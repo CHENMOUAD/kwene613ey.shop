@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>投資判断の科学 - 三崎優太</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', 'Yu Gothic Medium', 'Meiryo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.8;
+            overflow-x: hidden;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .main-container-wrapper {
+            max-width: 100vw;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+            padding-bottom: 80px;
+        }
+
+        .header-section-component {
+            text-align: center;
+            padding: 20px 15px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-section-component::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float-animation-keyframes 6s ease-in-out infinite;
+        }
+
+        .main-title-heading-element {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle-text-component {
+            font-size: 16px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+        }
+
+        .content-section-wrapper {
+            padding: 25px 15px;
+            background: white;
+            margin: 20px 10px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .profile-image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .circular-profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid #ff6b6b;
+            box-shadow: 0 8px 20px rgba(255,107,107,0.3);
+            object-fit: cover;
+            animation: pulse-glow-effect 2s infinite;
+        }
+
+        .description-text-block {
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-weight: 500;
+            letter-spacing: 0.6px;
+            text-align: justify;
+        }
+
+        .primary-action-button-element {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 17px;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 15px;
+            box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        .primary-action-button-element::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .primary-action-button-element:hover::before {
+            left: 100%;
+        }
+
+        .primary-action-button-element:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,107,107,0.5);
+        }
+
+        .secondary-content-section {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 25px 15px;
+            margin: 20px 10px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .secondary-image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .secondary-content-image { 
+            height: 190px;
+            border-radius: 15px;
+            border: 3px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            object-fit: cover;
+        }
+
+        .secondary-title-element {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            letter-spacing: 0.8px;
+            line-height: 1.6;
+        }
+
+        .benefits-list-container {
+            margin-bottom: 20px;
+        }
+
+        .benefit-item-element {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 14px;
+            padding-left: 22px;
+            position: relative;
+            font-weight: 500;
+            letter-spacing: 0.4px;
+        }
+
+        .benefit-item-element::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00b894;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .floating-bottom-button-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .floating-action-button-element {
+            background: linear-gradient(45deg, #00b894, #00a085);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            font-size: 17px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,184,148,0.4);
+            animation: breathing-pulse-animation 2s infinite;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        .floating-action-button-element::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .floating-action-button-element:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .risk-disclosure-section {
+            background: #2d3436;
+            color: white;
+            padding: 20px 15px;
+            margin-top: 40px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .risk-title-heading {
+            color: #ff7675;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .risk-item-element {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .risk-item-element::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #ff7675;
+        }
+
+        .legal-links-container {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #636e72;
+        }
+
+        .legal-link-element {
+            color: #74b9ff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 12px;
+        }
+
+        .legal-link-element:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes pulse-glow-effect {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 20px rgba(255,107,107,0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 25px rgba(255,107,107,0.5); }
+        }
+
+        @keyframes breathing-pulse-animation {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(0,184,148,0.4); }
+            50% { transform: scale(1.1); box-shadow: 0 15px 40px rgba(0,184,148,0.6); }
+        }
+
+        @keyframes float-animation-keyframes {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .highlight-accent-element {
+            color: #e17055;
+            font-weight: 600;
+        }
+
+        .gradient-text-effect {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 480px) {
+            .main-title-heading-element {
+                font-size: 20px;
+            }
+            
+            .content-section-wrapper {
+                margin: 15px 8px;
+                padding: 20px 12px;
+            }
+            
+            .floating-action-button-element {
+                padding: 15px 25px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container-wrapper">
+        <div class="header-section-component">
+            <h1 class="main-title-heading-element">投資判断の科学</h1>
+            <p class="subtitle-text-component">三崎優太のLINEを追加</p>
+        </div>
+
+        <div class="content-section-wrapper">
+            <div class="profile-image-container">
+                <img src="img/3.webp" alt="三崎優太" class="circular-profile-image">
+            </div>
+            
+            <p class="description-text-block">
+                投資でより賢明な判断をしたいですか？<span class="highlight-accent-element">無料講座</span>に参加して、科学的な投資手法を身につけましょう！本日限定<span class="gradient-text-effect">30名様</span>、今すぐ私のLINEアカウントを追加してください。
+            </p>
+            
+            <button class="primary-action-button-element" onclick="kkb()">
+                今すぐ枠を確保
+            </button>
+        </div>
+
+        <div class="secondary-content-section">
+            <h2 class="secondary-title-element">困っている方のお役に立てれば、とても嬉しく思います。一切料金はいただきません。</h2>
+            
+            <div class="secondary-image-container">
+                <img src="img/2.webp" alt="投資データ分析" class="secondary-content-image">
+            </div>
+            
+            <div class="benefits-list-container">
+                <div class="benefit-item-element">新しい投資手法とテクニックを活用して、投資の根本的なロジックを理解し、自分の未来をコントロールしましょう</div>
+                <div class="benefit-item-element">LINEを追加するだけで無料でブルーチップ株リストを入手できます</div>
+                <div class="benefit-item-element">その中の3銘柄は来週大幅に上昇する予定です</div>
+                <div class="benefit-item-element">金融専門家のアドバイスを受け、株式知識を学び、精密な株式投資に活用しましょう</div>
+            </div>
+            
+            <button class="primary-action-button-element" onclick="kkb()">
+                今すぐLINE追加
+            </button>
+        </div>
+
+        <div class="floating-bottom-button-container">
+            <button class="floating-action-button-element" onclick="kkb()">
+                今すぐ参加、より良いアドバイスを獲得
+            </button>
+        </div>
+
+        <div class="risk-disclosure-section">
+            <h3 class="risk-title-heading">⚠️ 重要なリスク警告</h3>
+            <div class="risk-item-element">本サービスは一般的な市場情報のみを提供し、投資アドバイスや推奨を構成するものではありません。</div>
+            <div class="risk-item-element">金融市場にはリスクが存在し、投資元本の一部または全部を失う可能性があります。</div>
+            <div class="risk-item-element">表示されているすべての例は過去のデータ分析であり、将来の収益を保証するものではありません。</div>
+            
+            <div class="legal-links-container">
+                <a href="privacy.html" class="legal-link-element">プライバシーポリシー</a>
+                <a href="terms.html" class="legal-link-element">利用規約</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function kkb() {
+            // LINE跳转逻辑
+            window.open('https://line.me/', '_blank');
+        }
+
+        // 防止页面缩放
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchstart', function (e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        });
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (e) {
+            let now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>
